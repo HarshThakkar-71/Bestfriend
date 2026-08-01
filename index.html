@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Friendship Day, My Favorite Penguin 🐧</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Quicksand:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --cream:#FFF8F1;
+    --cream-deep:#FBEFE0;
+    --pink:#FFD6E4;
+    --pink-deep:#FF9FC2;
+    --pink-ink:#B9527A;
+    --lavender:#E7DBFB;
+    --lavender-deep:#C6AAF0;
+    --purple:#9B72CF;
+    --baby-blue:#CFE9FF;
+    --blue-deep:#9FCBEF;
+    --gold:#FFD97D;
+    --gold-deep:#F5B942;
+    --ink:#5B4763;
+    --ink-soft:#8B7A93;
+    --white:#FFFFFF;
+    --shadow: 0 20px 45px -20px rgba(155,114,207,0.35);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  body{
+    font-family:'Quicksand', sans-serif;
+    color:var(--ink);
+    background:
+      radial-gradient(circle at 15% 10%, var(--baby-blue) 0%, transparent 40%),
+      radial-gradient(circle at 85% 20%, var(--pink) 0%, transparent 45%),
+      radial-gradient(circle at 50% 80%, var(--lavender) 0%, transparent 50%),
+      var(--cream);
+    overflow-x:hidden;
+    position:relative;
+  }
+
+  h1,h2,h3{ font-family:'Fredoka', sans-serif; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; transition-duration:0.01ms !important; }
+  }
+
+  a{ color:inherit; }
+
+  ::selection{ background:var(--pink-deep); color:white; }
+
+  /* ---------- Ambient background layer ---------- */
+  .sky{
+    position:fixed; inset:0; pointer-events:none; z-index:0; overflow:hidden;
+  }
+  .float-item{
+    position:absolute;
+    opacity:0.85;
+    filter:drop-shadow(0 6px 10px rgba(155,114,207,0.15));
+  }
+  @keyframes drift{
+    0%{ transform:translateY(110vh) translateX(0) rotate(0deg); opacity:0; }
+    8%{ opacity:0.9; }
+    92%{ opacity:0.9; }
+    100%{ transform:translateY(-15vh) translateX(40px) rotate(20deg); opacity:0; }
+  }
+  @keyframes driftFlip{
+    0%{ transform:translateY(110vh) translateX(0) rotate(0deg) scaleX(1); opacity:0; }
+    50%{ transform:translateY(50vh) translateX(-30px) rotate(-10deg) scaleX(-1); }
+    8%{ opacity:0.9; }
+    92%{ opacity:0.9; }
+    100%{ transform:translateY(-15vh) translateX(20px) rotate(10deg) scaleX(1); opacity:0; }
+  }
+  @keyframes twinkle{
+    0%,100%{ opacity:0.25; transform:scale(0.8); }
+    50%{ opacity:1; transform:scale(1.15); }
+  }
+  @keyframes cloudDrift{
+    0%{ transform:translateX(-10vw); }
+    100%{ transform:translateX(110vw); }
+  }
+
+  .star{ animation:twinkle 3.2s ease-in-out infinite; }
+  .cloud-el{ animation:cloudDrift linear infinite; opacity:0.55; }
+
+  /* ---------- Layout helpers ---------- */
+  section{
+    position:relative; z-index:1;
+    padding:90px 20px;
+  }
+  .wrap{ max-width:1080px; margin:0 auto; }
+  .center{ text-align:center; }
+  .eyebrow{
+    display:inline-block;
+    font-family:'Fredoka', sans-serif;
+    font-size:0.8rem;
+    letter-spacing:0.14em;
+    text-transform:uppercase;
+    color:var(--purple);
+    background:rgba(155,114,207,0.1);
+    padding:6px 18px;
+    border-radius:100px;
+    margin-bottom:18px;
+  }
+  .section-title{
+    font-size:clamp(2rem, 4.5vw, 3rem);
+    font-weight:700;
+    color:var(--pink-ink);
+    margin-bottom:16px;
+    line-height:1.2;
+  }
+  .section-sub{
+    font-size:1.05rem;
+    color:var(--ink-soft);
+    max-width:620px;
+    margin:0 auto 50px;
+    line-height:1.7;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    min-height:100vh;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center;
+    padding:60px 20px;
+  }
+  .hero-badge{
+    font-family:'Fredoka';
+    font-size:0.85rem;
+    letter-spacing:0.18em;
+    text-transform:uppercase;
+    color:var(--purple);
+    background:var(--white);
+    border:2px dashed var(--lavender-deep);
+    padding:8px 22px;
+    border-radius:100px;
+    margin-bottom:28px;
+    box-shadow:var(--shadow);
+  }
+  .hero h1{
+    font-size:clamp(2.2rem, 6vw, 4.2rem);
+    font-weight:700;
+    line-height:1.15;
+    background:linear-gradient(100deg, var(--pink-ink), var(--purple) 55%, var(--blue-deep));
+    -webkit-background-clip:text;
+    background-clip:text;
+    color:transparent;
+    max-width:900px;
+  }
+  .hero-sub{
+    margin-top:22px;
+    font-size:clamp(1rem, 2vw, 1.3rem);
+    color:var(--ink-soft);
+    min-height:2.4em;
+  }
+  .typewrite-cursor{
+    display:inline-block; width:2px; background:var(--pink-ink);
+    animation:blink 0.8s steps(2) infinite; margin-left:2px;
+  }
+  @keyframes blink{ 50%{ opacity:0; } }
+
+  .penguin-stage{
+    position:relative;
+    width:min(340px, 70vw);
+    margin:44px auto 20px;
+    cursor:pointer;
+    user-select:none;
+  }
+  .penguin-stage svg{ width:100%; height:auto; display:block; animation:waddle 2.6s ease-in-out infinite; transform-origin:bottom center; }
+  @keyframes waddle{
+    0%,100%{ transform:rotate(-3deg) translateY(0); }
+    50%{ transform:rotate(3deg) translateY(-6px); }
+  }
+  .penguin-ice{
+    width:78%; height:26px; margin:-14px auto 0;
+    background:linear-gradient(180deg, #ffffff, var(--baby-blue));
+    border-radius:50%;
+    box-shadow: var(--shadow);
+  }
+  .penguin-hint{
+    font-size:0.85rem; color:var(--ink-soft); margin-top:14px;
+    font-family:'Fredoka'; letter-spacing:0.02em;
+  }
+  .tap-count{ font-weight:700; color:var(--pink-ink); }
+
+  .scroll-cue{
+    margin-top:52px; font-size:0.8rem; color:var(--ink-soft);
+    display:flex; flex-direction:column; align-items:center; gap:8px;
+    font-family:'Fredoka'; letter-spacing:0.08em; text-transform:uppercase;
+  }
+  .scroll-cue span{
+    width:22px; height:34px; border:2px solid var(--purple); border-radius:100px;
+    position:relative;
+  }
+  .scroll-cue span::after{
+    content:''; position:absolute; top:6px; left:50%; width:4px; height:8px;
+    background:var(--purple); border-radius:100px; transform:translateX(-50%);
+    animation:scrollDot 1.6s ease-in-out infinite;
+  }
+  @keyframes scrollDot{ 0%{ top:6px; opacity:1;} 70%{ top:18px; opacity:0;} 100%{ top:18px; opacity:0;} }
+
+  /* ---------- Friendship Day feature section ---------- */
+  .fd-section{
+    background:linear-gradient(160deg, var(--gold) -10%, var(--pink) 45%, var(--lavender) 110%);
+    border-radius:40px;
+    max-width:1080px;
+    margin:0 auto;
+    padding:70px 34px;
+    position:relative;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+  }
+  .fd-section::before, .fd-section::after{
+    content:''; position:absolute; border-radius:50%; filter:blur(2px);
+  }
+  .fd-card{
+    background:rgba(255,255,255,0.75);
+    backdrop-filter:blur(6px);
+    border-radius:28px;
+    padding:44px clamp(20px,5vw,56px);
+    max-width:760px;
+    margin:0 auto;
+    text-align:center;
+    border:1px solid rgba(255,255,255,0.6);
+  }
+  .fd-card p{
+    font-size:clamp(1.05rem, 2vw, 1.3rem);
+    line-height:1.85;
+    color:#6b4f5e;
+  }
+  .fd-title{
+    font-size:clamp(1.9rem, 4vw, 2.6rem);
+    color:#8a4a63;
+    margin-bottom:26px;
+    font-weight:700;
+  }
+
+  /* ---------- Thank you cards ---------- */
+  .thanks-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+    gap:22px;
+    margin-top:10px;
+  }
+  .thanks-card{
+    background:var(--white);
+    border-radius:22px;
+    padding:30px 24px;
+    text-align:left;
+    box-shadow:0 14px 30px -18px rgba(155,114,207,0.4);
+    border:1px solid rgba(201,170,240,0.25);
+    position:relative;
+    transition:transform 0.35s ease, box-shadow 0.35s ease;
+  }
+  .thanks-card:hover{ transform:translateY(-8px) rotate(-0.6deg); box-shadow:0 20px 36px -16px rgba(155,114,207,0.5); }
+  .thanks-icon{
+    width:44px; height:44px; margin-bottom:14px;
+  }
+  .thanks-card p{ font-family:'Fredoka'; font-size:1.02rem; color:var(--ink); line-height:1.5; font-weight:500; }
+
+  /* ---------- Gallery ---------- */
+  .gallery-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(190px, 1fr));
+    gap:34px 26px;
+    margin-top:20px;
+  }
+  .polaroid{
+    background:var(--white);
+    padding:14px 14px 46px;
+    border-radius:6px;
+    box-shadow:0 16px 30px -14px rgba(90,60,90,0.35);
+    transform:rotate(var(--rot, -3deg));
+    transition:transform 0.3s ease;
+    position:relative;
+  }
+  .polaroid:nth-child(2n){ --rot: 3deg; }
+  .polaroid:nth-child(3n){ --rot: -1.5deg; }
+  .polaroid:hover{ transform:rotate(0deg) scale(1.04); z-index:2; }
+  .polaroid-photo{
+    aspect-ratio:1/1;
+    border-radius:2px;
+    background:repeating-linear-gradient(135deg, var(--lavender), var(--lavender) 10px, var(--pink) 10px, var(--pink) 20px);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fredoka'; color:var(--purple); font-weight:600; letter-spacing:0.05em;
+    text-align:center; padding:10px;
+  }
+  .polaroid-caption{
+    position:absolute; bottom:12px; left:0; right:0; text-align:center;
+    font-family:'Caveat'; font-size:1.3rem; color:var(--pink-ink);
+  }
+  .washi{
+    position:absolute; top:-12px; left:50%; transform:translateX(-50%) rotate(-3deg);
+    width:70px; height:22px; background:var(--baby-blue); opacity:0.85;
+    box-shadow:0 4px 8px rgba(0,0,0,0.08);
+  }
+
+  /* ---------- SRK section ---------- */
+  .srk-section{
+    text-align:center;
+    max-width:760px; margin:0 auto;
+  }
+  .srk-quote{
+    font-family:'Caveat';
+    font-size:clamp(2.4rem, 6vw, 3.6rem);
+    color:var(--pink-ink);
+    margin:26px 0 18px;
+    line-height:1.2;
+  }
+  .srk-quote::before, .srk-quote::after{ content:'"'; color:var(--gold-deep); }
+
+  /* ---------- Meter ---------- */
+  .meter-grid{
+    display:grid;
+    gap:26px;
+    max-width:640px;
+    margin:0 auto;
+  }
+  .meter-row{ text-align:left; }
+  .meter-label{
+    display:flex; justify-content:space-between; align-items:baseline;
+    font-family:'Fredoka'; font-weight:600; color:var(--ink);
+    margin-bottom:8px; font-size:1rem;
+  }
+  .meter-value{ color:var(--purple); font-weight:700; }
+  .meter-track{
+    height:16px; border-radius:100px; background:var(--cream-deep);
+    overflow:hidden; box-shadow:inset 0 2px 4px rgba(0,0,0,0.06);
+  }
+  .meter-fill{
+    height:100%; border-radius:100px; width:0%;
+    background:linear-gradient(90deg, var(--pink-deep), var(--purple));
+    transition:width 1.6s cubic-bezier(.2,.8,.2,1);
+    position:relative;
+  }
+  .meter-fill.legendary{ background:linear-gradient(90deg, var(--gold-deep), var(--pink-deep), var(--purple)); background-size:200% 100%; animation:shimmer 2.5s linear infinite; }
+  @keyframes shimmer{ 0%{ background-position:0% 0;} 100%{ background-position:200% 0;} }
+
+  /* ---------- Surprise button ---------- */
+  .surprise-wrap{ text-align:center; }
+  .btn-magic{
+    font-family:'Fredoka'; font-weight:600; font-size:1.05rem;
+    background:linear-gradient(120deg, var(--pink-deep), var(--purple));
+    color:white; border:none; padding:18px 38px; border-radius:100px;
+    cursor:pointer; box-shadow:0 16px 30px -12px rgba(155,72,146,0.55);
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .btn-magic:hover{ transform:translateY(-3px) scale(1.03); box-shadow:0 20px 36px -12px rgba(155,72,146,0.65); }
+  .btn-magic:active{ transform:translateY(0) scale(0.98); }
+  .reminder-box{
+    margin:30px auto 0; max-width:480px; min-height:70px;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Fredoka'; font-size:1.3rem; color:var(--pink-ink);
+    opacity:0; transform:translateY(10px);
+    transition:opacity 0.5s ease, transform 0.5s ease;
+    background:var(--white); border-radius:20px; padding:22px 30px;
+    box-shadow:var(--shadow);
+  }
+  .reminder-box.show{ opacity:1; transform:translateY(0); }
+
+  /* ---------- Final letter ---------- */
+  .letter-outer{
+    max-width:680px; margin:0 auto;
+    background:var(--white);
+    border-radius:6px 6px 20px 20px;
+    box-shadow:0 30px 60px -25px rgba(90,60,90,0.4);
+    padding:48px clamp(24px, 6vw, 60px) 60px;
+    position:relative;
+  }
+  .letter-outer::before{
+    content:''; position:absolute; top:0; left:0; right:0; height:14px;
+    background:repeating-linear-gradient(90deg, var(--pink-deep) 0 22px, var(--baby-blue) 22px 44px);
+    border-radius:6px 6px 0 0;
+  }
+  .letter-body{
+    font-family:'Caveat'; font-size:clamp(1.3rem, 2.6vw, 1.6rem);
+    color:#5c4a56; line-height:1.85; margin-top:20px;
+  }
+  .letter-sign{
+    margin-top:26px; font-family:'Caveat'; font-size:1.9rem; color:var(--pink-ink); text-align:right;
+  }
+
+  /* ---------- Footer ---------- */
+  footer{
+    text-align:center; padding:60px 20px 90px;
+    font-family:'Fredoka'; color:var(--ink-soft); font-size:0.9rem;
+  }
+  .footer-heart{ color:var(--pink-deep); display:inline-block; animation:pulseHeart 1.4s ease-in-out infinite; }
+  @keyframes pulseHeart{ 0%,100%{ transform:scale(1);} 50%{ transform:scale(1.25);} }
+
+  /* ---------- Easter egg overlay ---------- */
+  .egg-overlay{
+    position:fixed; inset:0; z-index:50;
+    background:rgba(91,71,99,0.45);
+    display:flex; align-items:center; justify-content:center;
+    opacity:0; pointer-events:none; transition:opacity 0.4s ease;
+    padding:20px;
+  }
+  .egg-overlay.show{ opacity:1; pointer-events:auto; }
+  .egg-card{
+    background:var(--white); border-radius:26px; padding:44px 34px;
+    max-width:420px; text-align:center; box-shadow:0 30px 60px rgba(0,0,0,0.3);
+    transform:scale(0.85); transition:transform 0.4s cubic-bezier(.2,1.4,.4,1);
+  }
+  .egg-overlay.show .egg-card{ transform:scale(1); }
+  .egg-badge{
+    font-family:'Fredoka'; font-weight:700; color:var(--gold-deep);
+    background:rgba(255,217,125,0.25); border:2px dashed var(--gold-deep);
+    padding:8px 18px; border-radius:100px; display:inline-block; margin-bottom:16px; font-size:0.9rem;
+  }
+  .egg-card h3{ color:var(--pink-ink); font-size:1.5rem; margin-bottom:14px; }
+  .egg-card p{ color:var(--ink-soft); line-height:1.6; margin-bottom:20px; }
+  .egg-close{
+    font-family:'Fredoka'; font-weight:600; background:var(--purple); color:white;
+    border:none; padding:10px 26px; border-radius:100px; cursor:pointer;
+  }
+
+  .confetti-piece{ position:fixed; top:-20px; z-index:60; pointer-events:none; border-radius:2px; }
+
+  @media (max-width: 640px){
+    section{ padding:64px 16px; }
+    .fd-section{ padding:50px 20px; border-radius:28px; }
+    .letter-outer{ padding:40px 20px 46px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="sky" id="sky"></div>
+
+<!-- ================= HERO ================= -->
+<section class="hero">
+  <div class="hero-badge">✨ TO A VERY SPECIAL PERSON OF MINE ✨</div>
+  <h1>Happy Friendship Day,<br>My Favorite Penguin 🐧</h1>
+  <div class="hero-sub" id="typewriter"></div>
+
+  <div class="penguin-stage" id="penguinStage" title="tap me!">
+    <svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+      <ellipse cx="100" cy="205" rx="55" ry="10" fill="#C6AAF0" opacity="0.25"/>
+      <path d="M100 20c40 0 60 45 60 90 0 45-20 80-60 80s-60-35-60-80c0-45 20-90 60-90z" fill="#3E4C63"/>
+      <path d="M100 45c28 0 42 38 42 72 0 32-14 58-42 58s-42-26-42-58c0-34 14-72 42-72z" fill="#FFFFFF"/>
+      <ellipse cx="100" cy="150" rx="26" ry="18" fill="#FFE0EC"/>
+      <circle cx="80" cy="75" r="9" fill="#22242E"/>
+      <circle cx="120" cy="75" r="9" fill="#22242E"/>
+      <circle cx="83" cy="72" r="2.4" fill="#fff"/>
+      <circle cx="123" cy="72" r="2.4" fill="#fff"/>
+      <ellipse cx="66" cy="92" rx="7" ry="5" fill="#FFB6C9" opacity="0.8"/>
+      <ellipse cx="134" cy="92" rx="7" ry="5" fill="#FFB6C9" opacity="0.8"/>
+      <path d="M92 88 Q100 98 108 88 Q100 94 92 88Z" fill="#F5A83C"/>
+      <path d="M40 110c-18 6-22 26-10 34 10 7 24 0 24-14" stroke="#3E4C63" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <path d="M160 110c18 6 22 26 10 34-10 7-24 0-24-14" stroke="#3E4C63" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <path d="M75 195c5 10 18 14 25 6" stroke="#F5A83C" stroke-width="8" fill="none" stroke-linecap="round"/>
+      <path d="M125 195c-5 10-18 14-25 6" stroke="#F5A83C" stroke-width="8" fill="none" stroke-linecap="round"/>
+    </svg>
+    <div class="penguin-ice"></div>
+  </div>
+  <div class="penguin-hint">Tap the penguin — <span class="tap-count" id="tapCount">0</span>/5 taps to unlock a secret 🎁</div>
+
+  <div class="scroll-cue">scroll down<span></span></div>
+</section>
+
+<!-- ================= FRIENDSHIP DAY ================= -->
+<section id="friendship-day">
+  <div class="wrap">
+    <div class="fd-section">
+      <div class="center" style="position:relative; z-index:2;">
+        <div class="fd-card">
+          <h2 class="fd-title">Happy Friendship Day 💛</h2>
+          <p>HAPPY FRIENDSHIP DAY! to the person I will always cherish and value. To the person I trust the most, The person who makes me jealous the most, To the person I always craved for, The Person I will love the most, the person who made me valued myself and to the person who is always making me a better person.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= THANK YOU ================= -->
+<section id="thank-you">
+  <div class="wrap center">
+    <span class="eyebrow">A few little thank-yous</span>
+    <h2 class="section-title">All the reasons, big and small</h2>
+    <p class="section-sub">Some things are easier to write than to say out loud. So here they are, just for you.</p>
+    <div class="thanks-grid">
+      <div class="thanks-card">
+        <svg class="thanks-icon" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.6-9.5-9C1 8.5 2 5 5.5 5c2 0 3.4 1.2 4 2.4C10.1 6.2 11.5 5 13.5 5 17 5 18 8.5 16.5 12 14 16.4 12 21 12 21z" fill="#FF9FC2"/></svg>
+        <p>Thank you for always listening, even when I repeat myself.</p>
+      </div>
+      <div class="thanks-card">
+        <svg class="thanks-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="#C6AAF0"/><path d="M8 13c1 1.5 2.5 2 4 2s3-0.5 4-2" stroke="#fff" stroke-width="1.6" stroke-linecap="round"/><circle cx="9" cy="10" r="1.2" fill="#fff"/><circle cx="15" cy="10" r="1.2" fill="#fff"/></svg>
+        <p>Thank you for being patient with me, always.</p>
+      </div>
+      <div class="thanks-card">
+        <svg class="thanks-icon" viewBox="0 0 24 24" fill="none"><path d="M12 2l2.4 6.6L21 9l-5 4.6L17.4 21 12 17.3 6.6 21 8 13.6 3 9l6.6-.4z" fill="#FFD97D"/></svg>
+        <p>Thank you for staying, when it would've been easier not to.</p>
+      </div>
+      <div class="thanks-card">
+        <svg class="thanks-icon" viewBox="0 0 24 24" fill="none"><path d="M4 15c3-8 13-8 16 0-3 5-13 5-16 0z" fill="#CFE9FF"/><circle cx="9" cy="14" r="1.3" fill="#5B4763"/><circle cx="15" cy="14" r="1.3" fill="#5B4763"/></svg>
+        <p>Thank you for making bad days so much easier.</p>
+      </div>
+      <div class="thanks-card">
+        <svg class="thanks-icon" viewBox="0 0 24 24" fill="none"><path d="M12 21s-7-4.6-9.5-9C1 8.5 2 5 5.5 5c2 0 3.4 1.2 4 2.4C10.1 6.2 11.5 5 13.5 5 17 5 18 8.5 16.5 12 14 16.4 12 21 12 21z" fill="#B98FD1"/></svg>
+        <p>Thank you for being one of the best things that's happened to me.</p>
+      </div>
+      <div class="thanks-card">
+        <svg class="thanks-icon" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" fill="#FFE0EC"/><path d="M9 9l6 6M15 9l-6 6" stroke="#B9527A" stroke-width="1.6" stroke-linecap="round"/></svg>
+        <p>Thank you, simply, for existing.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GALLERY ================= -->
+<section id="gallery">
+  <div class="wrap center">
+    <span class="eyebrow">our little scrapbook</span>
+    <h2 class="section-title">Cute Photos of My Diva</h2>
+    <p class="section-sub">IZZY BOO</p>
+
+    <div class="gallery-grid">
+
+      <div class="polaroid">
+        <div class="washi"></div>
+
+        <div class="polaroid-photo" style="overflow:hidden; border-radius:4px; aspect-ratio:1/1;">
+          <img src="images/Image2.jpg"
+               alt="Photo 1"
+               style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+
+        <div class="polaroid-caption">✨</div>
+      </div>
+
+      <div class="polaroid">
+        <div class="washi"></div>
+
+        <div class="polaroid-photo" style="overflow:hidden; border-radius:4px; aspect-ratio:1/1;">
+          <img src="images/Image1.jpeg"
+               alt="Photo 2"
+               style="width:100%; height:100%; object-fit:cover; display:block;">
+        </div>
+
+        <div class="polaroid-caption">🐧</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ================= SRK ================= -->
+<section id="srk">
+  <div class="srk-section">
+    <span class="eyebrow">a little srk magic</span>
+    <h2 class="section-title">Pyaar Dosti Hai</h2>
+    <div class="srk-quote">Pyaar Dosti Hai</div>
+    <p class="section-sub" style="margin-top:0;">True friendship might just be one of the purest forms of love there is — the kind that asks for nothing and gives everything anyway. That's exactly what this quote means to me, and exactly what your friendship has been.</p>
+  </div>
+</section>
+
+<!-- ================= METER ================= -->
+<section id="meter">
+  <div class="wrap center">
+    <span class="eyebrow">completely scientific</span>
+    <h2 class="section-title">The Friendship Meter</h2>
+    <p class="section-sub">Peer-reviewed by one very biased best friend (me).</p>
+    <div class="meter-grid">
+      <div class="meter-row">
+        <div class="meter-label"><span>Support Level</span><span class="meter-value" data-target="100" data-suffix="%">0%</span></div>
+        <div class="meter-track"><div class="meter-fill" data-width="100"></div></div>
+      </div>
+      <div class="meter-row">
+        <div class="meter-label"><span>Kindness Level</span><span class="meter-value">Infinite</span></div>
+        <div class="meter-track"><div class="meter-fill" data-width="100"></div></div>
+      </div>
+      <div class="meter-row">
+        <div class="meter-label"><span>Penguin Energy</span><span class="meter-value" data-target="999" data-suffix="%">0%</span></div>
+        <div class="meter-track"><div class="meter-fill" data-width="100"></div></div>
+      </div>
+      <div class="meter-row">
+        <div class="meter-label"><span>Ghost Energy</span><span class="meter-value" data-target="1000" data-suffix="%">0%</span></div>
+        <div class="meter-track"><div class="meter-fill" data-width="100"></div></div>
+      </div>
+      <div class="meter-row">
+        <div class="meter-label"><span>Best Friend Rating</span><span class="meter-value">Legendary</span></div>
+        <div class="meter-track"><div class="meter-fill legendary" data-width="100"></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= SURPRISE ================= -->
+<section id="surprise">
+  <div class="wrap surprise-wrap">
+    <span class="eyebrow">just in case</span>
+    <h2 class="section-title">Click If You Need A Reminder</h2>
+    <button class="btn-magic" id="surpriseBtn">Click If You Need A Reminder 💫</button>
+    <div class="reminder-box" id="reminderBox"></div>
+  </div>
+</section>
+
+<!-- ================= FINAL LETTER ================= -->
+<section id="letter">
+  <div class="wrap">
+    <div class="center" style="margin-bottom:36px;">
+      <span class="eyebrow">before you go</span>
+      <h2 class="section-title">One Last Letter ❤️</h2>
+    </div>
+
+    <div class="letter-outer">
+      <div class="letter-body">
+        Dear Ilsaa, 💛<br><br>
+
+        I know we got to know each other in a very weird way through Fatima, but I'll always thank her for introducing you to me. I'll always cherish the decision I made to text you.<br><br>
+
+        I'm most grateful to you for allowing me to talk to you, for becoming my friend, for letting me call you my best friend, and for giving me a place in your life. I will always try my best to be a good friend to you and to make you feel as amazing, appreciated, and wonderful as you make me feel.<br><br>
+
+        You have made my life so much more beautiful just by being a part of it.<br><br>
+
+        I know I've made so many mistakes, and I've upset you more times than I should have. Yet, every single time, you chose to forgive me. I'll always love and appreciate you for that. You are the most wonderful friend I could ever ask for.<br><br>
+
+        Actually... you're not just a friend anymore. You're family. I guess we've officially reached the family stage. ❤️<br><br>
+
+        Also, I'm going to tease you, annoy you, and irritate you forever. You'll never have a peaceful life as long as I'm in it. 😂<br><br>
+
+        I'll hype you up every single time you feel low. I'll always be there whenever you need me... and even when you don't need me, I'll still be there for you!!<br><br>
+
+        And I want you to understand one very important thing—you cannot give my place to anyone else. This is your official <strong>dhamkee</strong>. 😤 I am the only AYAN you'll ever have, and you are the only AYAN I'll ever have!<br><br>
+
+        So, to my <strong>Bauni, Ilyass Bhai, Penguin, Butterfly, Titli, and Chudail</strong>...<br><br>
+
+        ❤️ <strong>Happy Friendship Day!!</strong> ❤️<br><br>
+
+        And one last thing...<br><br>
+
+        <span style="font-size:1.15rem;font-weight:700;color:#ff4d88;">
+          You are my BESTESTESTESTESTESTESTESTESTESTESTESTEST Friend. ❤️
+        </span>
+      </div>
+
+      <div class="letter-sign">
+        — Yours,<br>
+        <strong>Your Only Gadhhaa</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  made with a whole lot of <span class="footer-heart">♥</span> for the best friend anyone could ask for
+</footer>
+
+<!-- ================= EASTER EGG OVERLAY ================= -->
+<div class="egg-overlay" id="eggOverlay">
+  <div class="egg-card">
+    <div class="egg-badge">🏆 Officially Certified</div>
+    <h3>Best Friend</h3>
+    <p>I know I cant be as a good or a great as you are to me but I will try to be someone you can count on everytime you are in trouble.  🐧💛</p>
+    <button class="egg-close" id="eggClose">close</button>
+  </div>
+</div>
+
+<script>
+(function(){
+  "use strict";
+
+  /* ---------- Ambient sky decorations ---------- */
+  var sky = document.getElementById('sky');
+  var ICONS = {
+    heart: '<svg viewBox="0 0 24 24" width="26" height="26"><path d="M12 21s-7-4.6-9.5-9C1 8.5 2 5 5.5 5c2 0 3.4 1.2 4 2.4C10.1 6.2 11.5 5 13.5 5 17 5 18 8.5 16.5 12 14 16.4 12 21 12 21z" fill="#FF9FC2"/></svg>',
+    star: '<svg viewBox="0 0 24 24" width="20" height="20" class="star"><path d="M12 2l2.4 6.6L21 9l-5 4.6L17.4 21 12 17.3 6.6 21 8 13.6 3 9l6.6-.4z" fill="#FFD97D"/></svg>',
+    sparkle: '<svg viewBox="0 0 24 24" width="16" height="16" class="star"><path d="M12 2c0 5 3 8 8 8-5 0-8 3-8 8 0-5-3-8-8-8 5 0 8-3 8-8z" fill="#B98FD1"/></svg>',
+    butterfly: '<svg viewBox="0 0 40 32" width="34" height="28"><path d="M20 6c-2-6-14-6-16 2-1 6 6 8 16 8" fill="#CFE9FF"/><path d="M20 6c2-6 14-6 16 2 1 6-6 8-16 8" fill="#FFD6E4"/><path d="M20 8c-1 4-8 5-14 3 4 4 10 6 14 4" fill="#B98FD1" opacity="0.7"/><path d="M20 8c1 4 8 5 14 3-4 4-10 6-14 4" fill="#FF9FC2" opacity="0.7"/><rect x="19" y="4" width="2" height="20" rx="1" fill="#5B4763"/></svg>',
+    cloud: '<svg viewBox="0 0 100 50" width="90" height="45" class="cloud-el"><ellipse cx="30" cy="30" rx="26" ry="16" fill="#fff"/><ellipse cx="60" cy="24" rx="30" ry="20" fill="#fff"/><ellipse cx="85" cy="32" rx="18" ry="13" fill="#fff"/></svg>'
+  };
+
+  function rand(min, max){ return Math.random() * (max - min) + min; }
+
+  function spawnFloating(type, keyframeName){
+    var el = document.createElement('div');
+    el.className = 'float-item';
+    el.innerHTML = ICONS[type];
+    el.style.left = rand(2, 96) + 'vw';
+    var duration = rand(12, 22);
+    var delay = rand(0, 18);
+    el.style.animation = (keyframeName || 'drift') + ' ' + duration + 's linear ' + delay + 's infinite';
+    sky.appendChild(el);
+  }
+
+  for (var i=0;i<7;i++) spawnFloating('heart');
+  for (var j=0;j<6;j++) spawnFloating('butterfly', 'driftFlip');
+  for (var k=0;k<9;k++) spawnFloating('star');
+  for (var m=0;m<10;m++) spawnFloating('sparkle');
+
+  // gentle clouds, fixed vertical positions, horizontal drift
+  var cloudTops = [8, 18, 30, 60, 75];
+  cloudTops.forEach(function(top, idx){
+    var el = document.createElement('div');
+    el.className = 'float-item';
+    el.style.top = top + 'vh';
+    el.style.left = '0';
+    el.innerHTML = ICONS.cloud;
+    el.querySelector('svg').style.animationDuration = rand(50,90) + 's';
+    el.querySelector('svg').style.animationDelay = (-rand(0,60)) + 's';
+    sky.appendChild(el);
+  });
+
+  /* ---------- Typewriter ---------- */
+  var lines = ["This tiny corner of the internet was made just for you."];
+  var twEl = document.getElementById('typewriter');
+  var li = 0, ci = 0, deleting = false;
+
+  function typeLoop(){
+    var current = lines[li];
+    if(!deleting){
+      ci++;
+      twEl.textContent = current.slice(0, ci);
+      if(ci === current.length){
+        setTimeout(function(){ deleting = lines.length > 1; typeLoop(); }, 1800);
+        return;
+      }
+      setTimeout(typeLoop, 38);
+    } else {
+      ci--;
+      twEl.textContent = current.slice(0, ci);
+      if(ci === 0){
+        deleting = false;
+        li = (li + 1) % lines.length;
+        setTimeout(typeLoop, 400);
+        return;
+      }
+      setTimeout(typeLoop, 22);
+    }
+  }
+  typeLoop();
+
+  /* ---------- Penguin easter egg ---------- */
+  var penguinStage = document.getElementById('penguinStage');
+  var tapCountEl = document.getElementById('tapCount');
+  var eggOverlay = document.getElementById('eggOverlay');
+  var eggClose = document.getElementById('eggClose');
+  var taps = 0;
+  var unlocked = false;
+
+  penguinStage.addEventListener('click', function(){
+    if(unlocked) return;
+    taps++;
+    tapCountEl.textContent = Math.min(taps, 5);
+    penguinStage.style.transform = 'scale(0.94)';
+    setTimeout(function(){ penguinStage.style.transform = 'scale(1)'; }, 120);
+    if(taps >= 5){
+      unlocked = true;
+      openEgg();
+      launchConfetti();
+    }
+  });
+
+  function openEgg(){ eggOverlay.classList.add('show'); }
+  eggClose.addEventListener('click', function(){ eggOverlay.classList.remove('show'); });
+  eggOverlay.addEventListener('click', function(e){ if(e.target === eggOverlay) eggOverlay.classList.remove('show'); });
+
+  function launchConfetti(){
+    var colors = ['#FF9FC2', '#B98FD1', '#FFD97D', '#CFE9FF', '#FFD6E4'];
+    for(var i=0;i<70;i++){
+      (function(){
+        var piece = document.createElement('div');
+        piece.className = 'confetti-piece';
+        var size = rand(6,12);
+        piece.style.width = size + 'px';
+        piece.style.height = (size * rand(0.5,1)) + 'px';
+        piece.style.background = colors[Math.floor(rand(0,colors.length))];
+        piece.style.left = rand(0,100) + 'vw';
+        document.body.appendChild(piece);
+        var duration = rand(2200, 4200);
+        var rotateEnd = rand(200, 900);
+        var xDrift = rand(-120, 120);
+        piece.animate([
+          { transform: 'translate(0,0) rotate(0deg)', opacity: 1 },
+          { transform: 'translate(' + xDrift + 'px, 100vh) rotate(' + rotateEnd + 'deg)', opacity: 0.9 }
+        ], { duration: duration, easing:'cubic-bezier(.2,.6,.4,1)' });
+        setTimeout(function(){ piece.remove(); }, duration + 50);
+      })();
+    }
+  }
+
+  /* ---------- Meter animation on scroll ---------- */
+  var animated = false;
+  var meterSection = document.getElementById('meter');
+  function animateMeters(){
+    if(animated) return;
+    animated = true;
+    document.querySelectorAll('.meter-fill').forEach(function(fill){
+      fill.style.width = fill.getAttribute('data-width') + '%';
+    });
+    document.querySelectorAll('.meter-value[data-target]').forEach(function(valEl){
+      var target = parseInt(valEl.getAttribute('data-target'), 10);
+      var suffix = valEl.getAttribute('data-suffix') || '';
+      var start = 0;
+      var dur = 1500;
+      var startTime = null;
+      function step(ts){
+        if(!startTime) startTime = ts;
+        var progress = Math.min((ts - startTime) / dur, 1);
+        var current = Math.floor(progress * target);
+        valEl.textContent = current + suffix;
+        if(progress < 1) requestAnimationFrame(step);
+        else valEl.textContent = target + suffix;
+      }
+      requestAnimationFrame(step);
+    });
+  }
+
+  if('IntersectionObserver' in window){
+    var observer = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){ if(entry.isIntersecting) animateMeters(); });
+    }, { threshold: 0.3 });
+    observer.observe(meterSection);
+  } else {
+    animateMeters();
+  }
+
+  /* ---------- Surprise button ---------- */
+  var reminders = [
+    "You matter.",
+    "You are appreciated.",
+    "You are stronger than you think.",
+    "You make people's lives better.",
+    "You made mine better too.",
+    "I HARSH THAKKAR LOVE YOU SO MUCH IZZY BOO 💛🐧"
+  ];
+  var reminderIdx = 0;
+  var reminderBox = document.getElementById('reminderBox');
+  var surpriseBtn = document.getElementById('surpriseBtn');
+
+  surpriseBtn.addEventListener('click', function(){
+    reminderBox.classList.remove('show');
+    setTimeout(function(){
+      reminderBox.textContent = reminders[reminderIdx % reminders.length];
+      reminderIdx++;
+      reminderBox.classList.add('show');
+    }, 200);
+  });
+
+})();
+</script>
+</body>
+</html>
